@@ -1,0 +1,83 @@
+package com.jwt.spring_security_jwtcasestudy.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
+public class Product {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String name;
+
+	private String category;
+
+	private Double price;
+
+	private Boolean deleted = false;
+
+	/*
+	 * why default constructor need hibernate internally creates object of new
+	 * product() then fills values from db . without this default constructor hibernate/jpa
+	 * may fail
+	 * 
+	 * Entities class have no param and all param constructor
+	 */
+	public Product() {
+	}
+
+	public Product(Long id, String name, String category, Double price, Boolean deleted) {
+
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.price = price;
+		this.deleted = deleted;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+}
